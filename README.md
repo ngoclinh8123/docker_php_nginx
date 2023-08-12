@@ -32,7 +32,7 @@ Then save and close
 
 - Open Notepad:
   Open Notepad (or Notepad++)
-  Rigt click and choose `Run as administrator`
+  Right click and choose `Run as administrator`
 - Open hosts file:
   `File`>`Open`
   Move to `C:\Windows\System32\drivers\etc`
