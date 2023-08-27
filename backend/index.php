@@ -1,6 +1,13 @@
 <?php
 // import controller here
 require 'app/controllers/HomeController.php';
+require 'app/controllers/MenuController.php';
+require 'app/controllers/AboutController.php';
+require 'app/controllers/ReservationController.php';
+require 'app/controllers/GalleryController.php';
+require 'app/controllers/StuffController.php';
+require 'app/controllers/BlogController.php';
+require 'app/controllers/ContactController.php';
 require 'config/route.php';
 
 // $controllerName = isset($_GET['controller']) ? $_GET['controller'] : 'home';
