@@ -44,7 +44,61 @@
 				  <span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
-					<ul class="navbar-nav ml-auto">
+					
+				<?php
+				$current_page = $_SERVER['REQUEST_URI'];
+
+				$menu_items = array(
+					'Home' => '/',
+					'Menu' => 'menu',
+					'About' => 'about',
+					'Post' => array('reservation', 'stuff', 'gallery'),
+					'Blog' => 'blog',
+					'Contact' => 'contact',
+				);
+
+				function isMenuItemActive($menuItem, $current_page) {
+					// xu ly slug cua Post
+					if (is_array($menuItem)) {
+						foreach ($menuItem as $subItem) {
+							if ($current_page === '/' . $subItem) {
+								return true;
+							}
+						}
+						return false;
+					} // Cac slugs khac 
+					else {
+						if ($menuItem === '/') {
+							return $current_page === $menuItem;
+						}
+						return $current_page === '/' . $menuItem;
+					}
+				}
+
+				?>
+
+				<ul class="navbar-nav ml-auto">
+					<?php foreach ($menu_items as $label => $url) : ?>
+						<?php if ($label === 'Post') : ?>
+							<li class="nav-item dropdown <?php echo isMenuItemActive($url, $current_page) ? 'active' : ''; ?>">
+								<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown"><?php echo $label; ?></a>
+								<div class="dropdown-menu" aria-labelledby="dropdown-a">
+									<a class="dropdown-item" href="reservation">Reservation</a>
+									<a class="dropdown-item" href="stuff">Stuff</a>
+									<a class="dropdown-item" href="gallery">Gallery</a>
+								</div>
+							</li>
+						<?php else : ?>
+							<li class="nav-item <?php echo isMenuItemActive($url, $current_page) ? 'active' : ''; ?>">
+								<a class="nav-link" href="<?php echo $url; ?>"><?php echo $label; ?></a>
+							</li>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</ul>
+
+				
+				
+					<!-- <ul class="navbar-nav ml-auto">
 						<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="menu">Menu</a></li>
 						<li class="nav-item"><a class="nav-link" href="about">About</a></li>
@@ -58,7 +112,7 @@
 						</li>
 						<li class="nav-item"><a class="nav-link" href="blog">Blog</a></li>
 						<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
 		</nav>
