@@ -46,34 +46,34 @@
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					
 				<?php
-				$current_page = $_SERVER['REQUEST_URI'];
+					$current_page = $_SERVER['REQUEST_URI'];
 
-				$menu_items = array(
-					'Home' => '/',
-					'Menu' => 'menu',
-					'About' => 'about',
-					'Post' => array('reservation', 'stuff', 'gallery'),
-					'Blog' => 'blog',
-					'Contact' => 'contact',
-				);
+					$menu_items = array(
+						'Home' => '/',
+						'Menu' => 'menu',
+						'About' => 'about',
+						'Post' => array('reservation', 'stuff', 'gallery'),
+						'Blog' => 'blog',
+						'Contact' => 'contact',
+					);
 
-				function isMenuItemActive($menuItem, $current_page) {
-					// xu ly slug cua Post
-					if (is_array($menuItem)) {
-						foreach ($menuItem as $subItem) {
-							if ($current_page === '/' . $subItem) {
-								return true;
+					function isMenuItemActive($menuItem, $current_page) {
+						// xu ly slug cua Post
+						if (is_array($menuItem)) {
+							foreach ($menuItem as $subItem) {
+								if ($current_page === '/' . $subItem) {
+									return true;
+								}
 							}
+							return false;
+						} // Cac slugs khac 
+						else {
+							if ($menuItem === '/') {
+								return $current_page === $menuItem;
+							}
+							return $current_page === '/' . $menuItem;
 						}
-						return false;
-					} // Cac slugs khac 
-					else {
-						if ($menuItem === '/') {
-							return $current_page === $menuItem;
-						}
-						return $current_page === '/' . $menuItem;
 					}
-				}
 
 				?>
 
@@ -96,23 +96,6 @@
 					<?php endforeach; ?>
 				</ul>
 
-				
-				
-					<!-- <ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="menu">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="about">About</a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="reservation">Reservation</a>
-								<a class="dropdown-item" href="stuff">Stuff</a>
-								<a class="dropdown-item" href="gallery">Gallery</a>
-							</div>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="blog">Blog</a></li>
-						<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
-					</ul> -->
 				</div>
 			</div>
 		</nav>
